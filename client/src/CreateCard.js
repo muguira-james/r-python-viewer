@@ -22,7 +22,7 @@ const CreateCard = (title, description, data, media, button) => {
 
                             <CardText>{description}</CardText>
                             <CardText>{data}</CardText>
-                            <Button id="name" onClick={() => button()} >Edit</Button>
+                            
                         </CardBody>
                     </Col>
                     <Col xs="6">

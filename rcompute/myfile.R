@@ -1,5 +1,11 @@
 # taken from example on https://www.rplumber.io/
 
+# {
+# "cols": ["X",  "Y"],
+# "X" : [ 1,2,3,4,5,6,7,8,9,0,23,43,6,5,76,12,31,22,21,18,17 ],
+# "Y" : [ 1,2,3,4,5,6,7,8,9,10,11,12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+# }
+
 #* @get /hello
 hello <- function() {
   return("hello")
@@ -14,8 +20,9 @@ desc <- function(v) {
   max.val <- max(f$v)
   min.val <- min(f$v)
   quan.val <- quantile(f$v)
+  q <- paste(c('0%: ', quan.val['0%'], ' 25%: ', quan.val['25%'], ' 50%: ', quan.val['50%'], ' 75%: ', quan.val['75%'], ' 100%: ', quan.val['100%']))
 
-  return(list(c("mean=", mean.val, " max=", max.val, " min=", min.val, " quantile=", quan.val)))
+  return(list(c("mean=", mean.val, " max=", max.val, " min=", min.val, " quantile=", q)))
 }
 
 #* @get /mean

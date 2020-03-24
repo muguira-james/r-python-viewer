@@ -6,6 +6,7 @@ import logo_Python from './Python.png'
 import CreateCard from './CreateCard'
 import {
     Card, CardImg, CardText, CardBody,
+    
     CardTitle, Button,
     Container, Row, Col
 } from 'reactstrap'
@@ -112,7 +113,7 @@ class App extends React.Component {
         //
         let d = e.target.result
         let urlPy = "https://pycompute.herokuapp.com/stats/regression"
-        // let url = "http://127.0.0.1:5000/stats/describe"
+        // let urlPy = "http://127.0.0.1:8090/stats/describe"
         postData(urlPy, d).then((data) => {
             let it = `slope = ${data.slope} intercept = ${data.intercept} r_value = ${data.r_value} p_value = ${data.p_value}`
             this.setState({ card2_data: it })
@@ -124,12 +125,14 @@ class App extends React.Component {
         //
         // then R
         //
-        // let urlR = 'http://localhost:8090/describe?v={ "v": [1,2,3,4,5,6,7,8,9,0,23,43,6,5,76,12,31,22,21,18,17 ]  }'
-        let urlR = 'http://rcompute.herokuapp.com/describe?v={ "v": [1,2,3,4,5,6,7,8,9,0,23,43,6,5,76,12,31,22,21,18,17 ]  }'
+        // let urlR = 'http://localhost:9000/describe?v={ "v": [1,2,3,4,5,6,7,8,9,0,23,43,6,5,76,12,31,22,21,18,17 ]  }'
+        let urlR = 'https://rcompute.herokuapp.com/describe?v={ "v": [1,2,3,4,5,6,7,8,9,0,23,43,6,5,76,12,31,22,21,18,17 ]  }'
         fetch(urlR).then((response) => { return response.json() }).then((data) => {
-            console.log("--RR-->", data[0])
+            console.log("--RR-->", data[0][7])
 
             this.setState({ card1_data: data[0] })
+            
+
         })
     }
     OpenFile = (e) => {
@@ -152,16 +155,7 @@ class App extends React.Component {
             <div>
        
                 <div >
-                    <Modal isOpen={this.state.modal} toggle={this.toggle} >
-                        <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
-                        <ModalBody>
-                            {this.state.card1_data}
-                        </ModalBody>
-                        <ModalFooter>
-                            <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-                            <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-                        </ModalFooter>
-                    </Modal>
+ 
                     <Table>
                     <tbody>
             <Card>
